@@ -51,7 +51,7 @@ def gmail_access():
 		                        "token_uri": st.secrets["gmail"]["token_uri"],
 		                        "auth_provider_x509_cert_url": st.secrets["gmail"]["auth_provider_x509_cert_url"],
 		                        "client_secret": st.secrets["gmail"]["client_secret"],
-		                        "redirect_uris": ["urn:ietf:wg:oauth:2.0:oob", "http://localhost"]
+		                        "redirect_uris": ["http://localhost"]
 				}},SCOPES)
 			auth_url, _ = flow.authorization_url(prompt='consent')
 			# creds = flow.run_local_server(port=0)
