@@ -12,8 +12,6 @@ from googleapiclient.errors import HttpError
 import base64
 from bs4 import BeautifulSoup
 from wordcloud import WordCloud
-import openai
-import config
 from openai import OpenAI
 
 
