@@ -53,7 +53,7 @@ def gmail_access():
 					"client_secret": st.secrets["gmail"]["client_secret"],
 					"redirect_uris": ["http://localhost"]
 				}},SCOPES)
-			creds = flow.run_local_server(port=0)
+			creds = flow.run_console()
 		
 		# Save the credentials for the next run
 		with open("token.json", "w") as token:
