@@ -53,7 +53,7 @@ def gmail_access():
 		                        "client_secret": st.secrets["gmail"]["client_secret"],
 		                        "redirect_uris": ["urn:ietf:wg:oauth:2.0:oob", "http://localhost"]
 				}},SCOPES)
-			auth_url, _ = google_auth_oauthlib.flow.authorization_url(prompt='consent')
+			auth_url, _ = flow.authorization_url(prompt='consent')
 			# creds = flow.run_local_server(port=0)
 			st.write("Go to this URL to authorize the application:")
 			st.write(auth_url)
