@@ -43,17 +43,8 @@ def gmail_access():
 		if creds and creds.expired and creds.refresh_token:
 			creds.refresh(Request())
 		else:
-			flow = InstalledAppFlow.from_client_config(
-				{"installed": {
-					"client_id": st.secrets["gmail"]["client_id"],
-					"project_id": st.secrets["gmail"]["project_id"],
-					"auth_uri": st.secrets["gmail"]["auth_uri"],
-					"token_uri": st.secrets["gmail"]["token_uri"],
-					"auth_provider_x509_cert_url": st.secrets["gmail"]["auth_provider_x509_cert_url"],
-					"client_secret": st.secrets["gmail"]["client_secret"],
-					"redirect_uris": ["http://localhost"]
-				}},SCOPES)
-			creds = flow.run_console()
+			flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+			creds = flow.run_local_server(port=0)
 		
 		# Save the credentials for the next run
 		with open("token.json", "w") as token:
