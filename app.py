@@ -53,11 +53,20 @@ def gmail_access():
 		                        "client_secret": st.secrets["gmail"]["client_secret"],
 		                        "redirect_uris": ["urn:ietf:wg:oauth:2.0:oob", "http://localhost"]
 				}},SCOPES)
-			creds = flow.run_local_server(port=0)
+			auth_url, _ = google_auth_oauthlib.flow.authorization_url(prompt='consent')
+			# creds = flow.run_local_server(port=0)
+
+			st.write("Go to this URL to authorize the application:")
+   			st.write(auth_url)
+			
+			code = st.text_input('Enter the authorization code here:')
+			if code:
+			        flow.fetch_token(code=code)
+			        creds = flow.credentials
 		
 		# Save the credentials for the next run
-		with open("token.json", "w") as token:
-		  token.write(creds.to_json())
+		# with open("token.json", "w") as token:
+		#   token.write(creds.to_json())
 
 	# Connect to Gmail API
 	service = build("gmail", "v1", credentials=creds)
